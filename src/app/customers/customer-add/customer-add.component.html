@@ -1,0 +1,172 @@
+<div class="container">
+    <h3>New Customer Info</h3>
+    <hr>
+
+    <!--Template Driven Form-->
+    <form name="customerForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+
+        <!--id auto generate-->
+        <div class="form-group">
+        <input type="text" name="custNo" readonly
+        [(ngModel)]="customerService.formCustomerData.custNo" hidden>
+        </div>
+
+ 
+    <!--custName-->
+    <div class="form-group">
+        <label>
+            Customer Name
+        </label>
+        <input type="text" name="custName" #custName="ngModel"
+        [(ngModel)]="customerService.formCustomerData.custName"
+        placeholder="Enter Customer Name"
+        minlength="3" maxlength="25" required 
+        class="form-control"
+        [ngClass]="{'is-invalid': custName.touched && custName.invalid}">
+
+        <!--VALIDATION MESSAGE-->
+        <div class="validation-error" *ngIf="custName.touched && custName.invalid">
+            <div *ngIf="custName.errors.required">
+            Customer Name is invalid or required!
+            </div>
+
+        </div>
+        </div>
+
+        <!--custPlace-->
+    <div class="form-group">
+        <label>
+          Customer Place
+        </label>
+        <input type="text" name="custPlace" #custPlace="ngModel"
+               [(ngModel)]="customerService.formCustomerData.custPlace"
+               placeholder="Enter Customer Place"
+               required 
+               class="form-control"
+               [ngClass]="{'is-invalid': custPlace.touched && custPlace.invalid}">
+  
+        <!--VALIDATION MESSAGE-->
+        <div class="validation-error" *ngIf="custPlace.touched && custPlace.invalid">
+          <div *ngIf="custPlace.errors.required">
+            Customer Place is required!
+          </div>
+        </div>
+      </div>
+  
+      <!--custPhone-->
+      <div class="form-group">
+        <label>
+          Customer Phone
+        </label>
+        <input type="tel" name="custPhone" #custPhone="ngModel"
+               [(ngModel)]="customerService.formCustomerData.custPhone"
+               placeholder="Enter Customer Phone"
+               required 
+               class="form-control"
+               [ngClass]="{'is-invalid': custPhone.touched && custPhone.invalid}">
+  
+        <!--VALIDATION MESSAGE-->
+        <div class="validation-error" *ngIf="custPhone.touched && custPhone.invalid">
+          <div *ngIf="custPhone.errors.required">
+            Customer Phone is required!
+          </div>
+        </div>
+      </div>
+
+      <!--custEmail-->
+    <div class="form-group">
+        <label>
+          Customer Email
+        </label>
+        <input type="email" name="custEmail" #custEmail="ngModel"
+               [(ngModel)]="customerService.formCustomerData.custEmail"
+               placeholder="Enter Customer Email"
+               required 
+               class="form-control"
+               [ngClass]="{'is-invalid': custEmail.touched && custEmail.invalid}">
+  
+        <!--VALIDATION MESSAGE-->
+        <div class="validation-error" *ngIf="custEmail.touched && custEmail.invalid">
+          <div *ngIf="custEmail.errors.required">
+            Customer Email is required!
+          </div>
+          <div *ngIf="custEmail.errors.email">
+            Invalid email format!
+          </div>
+        </div>
+      </div>
+  
+      <!--custPass-->
+      <div class="form-group">
+        <label>
+          Customer Password
+        </label>
+        <input type="password" name="custPass" #custPass="ngModel"
+               [(ngModel)]="customerService.formCustomerData.custPass"
+               placeholder="Enter Customer Password"
+               required 
+               class="form-control"
+               [ngClass]="{'is-invalid': custPass.touched && custPass.invalid}">
+  
+        <!--VALIDATION MESSAGE-->
+        <div class="validation-error" *ngIf="custPass.touched && custPass.invalid">
+          <div *ngIf="custPass.errors.required">
+            Customer Password is required!
+          </div>
+        </div>
+      </div>
+
+
+      <!--loanId : number = 0;-->
+
+     
+
+        
+   <!--- loanDetails : Loandetails;-->
+
+
+   <!--- loanAmount :  number = 0;-->
+   <div class="form-group">
+    <label>
+      Loan Amount
+    </label>
+    <input type="loanAmount" name="loanAmount" #loanAmount="ngModel"
+           [(ngModel)]="customerService.formCustomerData.loanAmount"
+           placeholder="Enter Loan Amount"
+           required 
+           class="form-control"
+           [ngClass]="{'is-invalid': loanAmount.touched && loanAmount.invalid}">
+
+    <!--VALIDATION MESSAGE-->
+    <div class="validation-error" *ngIf="loanAmount.touched && loanAmount.invalid">
+      <div *ngIf="loanAmount.errors.required">
+        LOan Amount is required!
+      </div>
+    </div>
+  </div>
+
+ <!-- loanId -->
+
+<div class="form-group">
+    <label for="loanId">Loan Name</label>
+    <select name="loanId" id="loanId" #loanId="ngModel"
+        [(ngModel)]="customerService.formCustomerData.loanDetails.loanId" class="form-control" required>
+        <option value="0" selected disabled>---Select Loan Name---</option>
+        <option *ngFor="let loan of customerService.loans" [value]="loan.loanId">{{ loan.loanName }}</option>
+    </select>
+</div>
+ <!--VALIDATION MESSAGE-->
+ <div class="validation-error" *ngIf="loanId.touched && loanId.invalid">
+    <div *ngIf ="loanId.errors.required">
+        Loan details is required
+    </div>
+</div>
+
+ 
+
+
+
+
+</form>
+
+</div>
